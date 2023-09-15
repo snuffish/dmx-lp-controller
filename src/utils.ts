@@ -1,5 +1,7 @@
+import { colorFromHex } from 'launchpad.js/dist/colorHelpers';
 import { UniverseData } from 'dmx-ts'
 import { RgbColor } from 'launchpad.js'
+import { colorFromRGB } from 'launchpad.js/dist/colorHelpers'
 import fetch from 'node-fetch'
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3000'
@@ -38,6 +40,10 @@ const randomRGB = (): RgbColor => {
     return [r, g, b]
 }
 
+const colorToRGB = (color: RgbColor): RgbColor => {
+    return color.map(v => v * 255) as RgbColor
+}
+
 const DMX = {
     update,
     clear
@@ -49,7 +55,14 @@ const COLORS = {
     randomRGB
 }
 
+const LP = {
+    colorFromRGB,
+    colorFromHex,
+    colorToRGB
+}
+
 export {
     DMX,
-    COLORS
+    COLORS,
+    LP
 }

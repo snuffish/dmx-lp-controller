@@ -3,6 +3,8 @@
 //     console.log(arguments)
 // }
 
+import { LP } from "./src/utils"
+
 // const run = callback.bind(null, "ABC")
 
 // console.log(run("1","D","DS"))
@@ -10,8 +12,14 @@
 
 
 
+let rgb = [45.21,25.3,12.5]
+console.log(`RGB => ${rgb}`)
 
+let lpColor = LP.colorFromRGB(rgb)
+console.log(`lpColor => ${lpColor}`)
 
+let reverseRgb = LP.colorToRGB(lpColor)
+console.log(`reverseRgb => ${reverseRgb}`)
 
 
 

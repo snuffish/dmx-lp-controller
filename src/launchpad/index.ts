@@ -1,17 +1,15 @@
 import { autoDetect, Button, colors, ILaunchpad, isButton, RgbColor, waitForReady } from 'launchpad.js'
-import { COLORS, DMX } from '../utils'
+import { COLORS, DMX, LP } from '../utils'
 import { ButtonEvent, AppLaunchpadProps } from '../types'
 const { colorFromHex, colorFromRGB } = colors;
 
 let lp: ILaunchpad
 
-type xy = [number, number]
-
-type GridButton = { xy: xy, rgb: RgbColor }
+type GridButton = { xy: [number, number], rgb: RgbColor }
 
 let grid: Set<GridButton> = new Set()
 
-const getGridButton = (xy: xy): GridButton | false => {
+const getGridButton = (xy: GridButton['xy']): GridButton | false => {
     for (let item of grid) {
         if (JSON.stringify(item.xy) == JSON.stringify(xy))
             return item
@@ -31,7 +29,7 @@ const hexRNGScript = (lp: ILaunchpad): void => {
                 rgb
             })
 
-            lp.setButtonColor([x,y], colorFromRGB(rgb))
+            lp.setButtonColor([x,y], LP.colorFromRGB(rgb))
         }
     }
 }
@@ -74,7 +72,7 @@ const init = (name: string) => {
     DMX.clear()
     lp.allOff()
 
-    hexRNGScript(lp)
+    // hexRNGScript(lp)
 }
 
 const Application = async ({ debug }: AppLaunchpadProps) => {
