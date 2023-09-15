@@ -1,78 +1,50 @@
-// @ts-nocheck
-import { DMX, Animation, EnttecUSBDMXProDriver } from 'dmx-ts'
+/**
+ * Spawn an Express.JS Server and attach a DMX-Controller adapter through the SerialPort Interface.
+ * 
+ * Environment variables:
+ *   - serialPort: The port the DMX-Controller is connected to.
+ *   - serverPort:  The HTTP/TCP Port the server with Listen for incoming requests & connections.
+ */
 
-const getSerialPort = () => {
-    return 'COM3'
+import express from 'express'
+import { DMX, EnttecUSBDMXProDriver } from 'dmx-ts'
+import type { AppDMXProps } from '../types'
+
+const setupDMX = async (serialPort: string) => {
+    const dmx = new DMX()
+    const driver = new EnttecUSBDMXProDriver(serialPort, { dmxSpeed: 40 })
+    const universe = await dmx.addUniverse('universe1', driver)
+
+    console.log(`Attached DMX from Serial-Port => ${serialPort}`)
+
+    const reset = () => universe.updateAll(0)
+
+    return {
+        driver, universe, reset
+    }
 }
 
+const Application = async ({ serialPort, serverPort }: AppDMXProps) => {
+    const server = express().use(express.json())
+    const dmx = await setupDMX(serialPort)
 
-;(async() => {
-    let dmx = new DMX()
-    const SERIAL_PORT = getSerialPort()
+    server.listen(serverPort, () => console.log(`Listening on port => ${serverPort}`))
 
-    const DRIVER = new EnttecUSBDMXProDriver(SERIAL_PORT, { dmxSpeed: 40 })
-    const universe = await dmx.addUniverse('demo', DRIVER)
+    server.post('/dmx/update', (req, res) => {
+        const data = req.body
+        console.log(data)
+        dmx.universe.update(data)
+        res.sendStatus(200)
+    })
 
-    console.log(universe)
-})()
+    server.get('/dmx/clear', (req, res) => {
+        dmx.reset()
+        res.sendStatus(200)
+    })
+}
 
+Application({
+    serialPort: process.env.SERIAL_PORT || 'COM3',
+    serverPort: (process.env.SERVER_PORT || 3000) as number
+})
 
-// Windows
-// const DRIVER = new EnttecUSBDMXProDriver('COM3', { dmxSpeed: 40 })
-
-// MAC
-// const SERIAL_PORT = '/dev/cu.usbserial-A5065QFW'
-// const SERIAL_PORT = 'COM3'
-// const DRIVER = new EnttecUSBDMXProDriver(SERIAL_PORT, { dmxSpeed: 40 })
-// let universe = await dmx.addUniverse('demo', DRIVER)
-
-// universe.updateAll(0)
-
-// new Animation()
-// 	.add({
-// 		4: 127
-// 	}, 2000)
-// 	.add({
-// 		4: 180
-// 	}, 2000)
-// 	.runLoop(universe)
-
-// universe.update({
-// 	22: 77
-// })
-
-// new Animation()
-// .add({
-// 	22: 77
-// }).run(universe)
-
-// new Animation()
-// .add({
-// 	22: 77,
-// 	24: 1
-// }, 2000)
-// .add({
-// 	24: 255
-// }, 2000)
-// .runLoop(universe)
-
-// new Animation()
-// .add({
-// 	4: 127
-// }, 2000)
-// .add({
-// 	4: 180
-// }, 2000)
-// .runLoop(universe)
-
-// export default async function handler(
-// 	req: NextApiRequest,
-// 	res: NextApiResponse
-// ) {
-// 	const json = JSON.parse(req.body)
-
-// 	console.log("JSON => ", json)
-// 	universe.update(json)
-
-// 	res.status(200).json(true)
-// }
