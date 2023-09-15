@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dmx": "ts-node-dev --respawn src/dmx",
-    "lp": "tsd launchpad"
+    "lp": "ts-node-dev --respawn src/launchpad"
   },
   "keywords": [],
   "author": "",

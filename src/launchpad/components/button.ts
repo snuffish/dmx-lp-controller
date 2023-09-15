@@ -1,14 +1,8 @@
-type ColorTuple = [number, number, number]
-
-type Position = {
-    nr: number,
-    x: number,
-    y: number
-}
+import type { RgbColor, ButtonIn as Position } from 'launchpad.js'
 
 type Color = {
-    rgb: ColorTuple,
-    midi: ColorTuple
+    rgb: RgbColor,
+    midi: RgbColor
 }
 
 type ButtonProps = {
@@ -16,7 +10,7 @@ type ButtonProps = {
     color: Color
 }
 
-export default class Button {
+export default class ButtonComponent {
     private position: Position
     private color: Color
 
@@ -25,7 +19,7 @@ export default class Button {
         this.color = props.color
     }
 
-    setColor(color: ColorTuple) {
+    setColor(color: RgbColor) {
 
     }
 }
