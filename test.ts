@@ -1,9 +1,10 @@
-// @ts-nocheck
 // function callback(arg1,arg2,arg3) {
 //     console.log(arguments)
 // }
 
-import { LP } from "./src/utils"
+import { Interface } from "readline"
+
+// import { LP } from "./src/utils"
 
 // const run = callback.bind(null, "ABC")
 
@@ -12,22 +13,33 @@ import { LP } from "./src/utils"
 
 
 
-let rgb = [45.21,25.3,12.5]
-console.log(`RGB => ${rgb}`)
+// let rgb = [45.21,25.3,12.5]
+// console.log(`RGB => ${rgb}`)
 
-let lpColor = LP.colorFromRGB(rgb)
-console.log(`lpColor => ${lpColor}`)
+// let lpColor = LP.colorFromRGB(rgb)
+// console.log(`lpColor => ${lpColor}`)
 
-let reverseRgb = LP.colorToRGB(lpColor)
-console.log(`reverseRgb => ${reverseRgb}`)
-
-
+// let reverseRgb = LP.colorToRGB(lpColor)
+// console.log(`reverseRgb => ${reverseRgb}`)
 
 
 
+var x = 1
+console.log(`DFDSFDS=> x = ${x}`)
 
 
 
+// const grid = new Map()
+
+//  grid.set(2,{
+//     name: "DSDS"
+//  })
+
+//  grid.set(10, {
+//     name: "XXXSADKLSAJDKJLSA"
+//  })
+
+//  console.log(grid.get(10))
 
 
 

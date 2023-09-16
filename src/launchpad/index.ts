@@ -1,7 +1,6 @@
-import { autoDetect, Button, colors, ILaunchpad, isButton, RgbColor, waitForReady } from 'launchpad.js'
+import { autoDetect, Button, ILaunchpad, RgbColor } from 'launchpad.js'
+import { AppLaunchpadProps, ButtonEvent } from '../types'
 import { COLORS, DMX, LP } from '../utils'
-import { ButtonEvent, AppLaunchpadProps } from '../types'
-const { colorFromHex, colorFromRGB } = colors;
 
 let lp: ILaunchpad
 
@@ -36,6 +35,7 @@ const hexRNGScript = (lp: ILaunchpad): void => {
 
 
 const pressed = (event: ButtonEvent, button: Button) => {
+    console.clear()
     console.debug(`[${event}] `, button)
 
     if (button.nr == 19) {
@@ -46,7 +46,7 @@ const pressed = (event: ButtonEvent, button: Button) => {
 
     if (button.nr == 29) {
         DMX.clear()
-        hexRNGScript(lp)
+        // hexRNGScript(lp)
         return
     }
 

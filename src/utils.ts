@@ -1,13 +1,22 @@
 import { colorFromHex } from 'launchpad.js/dist/colorHelpers';
-import { UniverseData } from 'dmx-ts'
-import { RgbColor } from 'launchpad.js'
+import type { UniverseData } from 'dmx-ts'
+import type { RgbColor } from 'launchpad.js'
 import { colorFromRGB } from 'launchpad.js/dist/colorHelpers'
 import fetch from 'node-fetch'
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3000'
 
-const update = async (data: UniverseData) => {
-    const req = await fetch(`${BASE_URL}/dmx/update`, {
+const sendRequest = async (route: string, data: any) => {
+    const headers = new Map()
+
+    const reqObj = {
+        headers
+    }
+
+    headers.set('Content-Type', 'application/json')
+
+
+    const req = await fetch(`${BASE_URL}${route}}`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
@@ -16,8 +25,12 @@ const update = async (data: UniverseData) => {
     })
 }
 
+const update = async (data: UniverseData) => {
+    await sendRequest('/dmx/update', data)
+}
+
 const clear = async() => {
-    const req = await fetch(`${BASE_URL}/dmx/clear`)
+    const req= await fetch(`${BASE_URL}/dmx/clear`)
 }
 
 const hexToRgb = (hex: string): RgbColor => {
