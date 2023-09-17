@@ -7,8 +7,11 @@
  */
 
 import express from 'express'
-import { DMX, EnttecUSBDMXProDriver } from 'dmx-ts'
+import { DMX, EnttecUSBDMXProDriver, Animation } from 'dmx-ts'
 import type { AppDMXProps } from '../types'
+import { MATH } from '../utils'
+
+let dmx: any
 
 const setupDMX = async (serialPort: string) => {
     const dmx = new DMX()
@@ -24,11 +27,36 @@ const setupDMX = async (serialPort: string) => {
     }
 }
 
+const startAnimation = () => {
+    new Animation()
+        .add({
+            1: MATH.randomNumber(0, 255),
+            2: MATH.randomNumber(0, 255),
+            3: MATH.randomNumber(0, 255)
+        }, 500)
+        .add({
+            1: MATH.randomNumber(50, 90),
+            2: MATH.randomNumber(30, 40),
+            3: MATH.randomNumber(150,230)
+        }, 1000)
+        .add({
+            1: MATH.randomNumber(175),
+            2: MATH.randomNumber(100),
+            3: MATH.randomNumber(200)
+        }, 1000)
+        .runLoop(dmx.universe)
+
+}
+
 const Application = async ({ serialPort, serverPort }: AppDMXProps) => {
     const server = express().use(express.json())
-    const dmx = await setupDMX(serialPort)
+    dmx = await setupDMX(serialPort)
 
     server.listen(serverPort, () => console.log(`Listening on port => ${serverPort}`))
+
+    server.get('/', (req, res) => {
+        res.send("Running!")
+    })
 
     server.post('/dmx/update', (req, res) => {
         const data = req.body
@@ -41,6 +69,16 @@ const Application = async ({ serialPort, serverPort }: AppDMXProps) => {
         dmx.reset()
         res.sendStatus(200)
     })
+
+    server.get('/dmx/animation', (req, res) => {
+        res.sendStatus(500)
+    })
+
+    server.get('/dmx/strobe', (req, res) => {
+        res.sendStatus(200)
+    })
+
+    // startAnimation()
 }
 
 Application({
