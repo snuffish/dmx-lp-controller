@@ -13,6 +13,7 @@ export namespace Grid {
             rgb: RgbColor
             setColor: Function
         },
+        onTrigger?: Function,
         clear: Function
     }
 

@@ -78,6 +78,9 @@ const strobe = (enabled: boolean, speed: number) => {
     }
 }
 
+export const range = (start: number = 0, stop: number = 8, step: number = 1) => 
+  Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step))
+
 const DMX = {
     update,
     clear,
