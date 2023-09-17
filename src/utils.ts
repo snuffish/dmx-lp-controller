@@ -3,9 +3,10 @@ import type { UniverseData } from 'dmx-ts'
 import type { RgbColor } from 'launchpad.js'
 import { colorFromRGB } from 'launchpad.js/dist/colorHelpers'
 import fetch from 'node-fetch'
-import { GridButton, IGrid } from './types';
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3000'
+
+export const arrayEquals = (arr1: Array<any>, arr2: Array<any>) => JSON.stringify(arr1) == JSON.stringify(arr2)
 
 const sendRequest = async (route: string, data: any) => {
     const req = await fetch(`${BASE_URL}${route}`, {
@@ -34,31 +35,10 @@ const hexToRgb = (hex: string): RgbColor => {
     return [r, g, b]
 }
 
-const randomHex = (): string => Math.floor(Math.random() * 16777215).toString(16)
-
-const getDarkenHex = () => getDarkenHexColor(randomHex(), -40)
-
-const randomRGB = (): RgbColor => {
-    const num = Math.round(0xffffff * Math.random());
-    const r = num >> 16;
-    const g = num >> 8 & 255;
-    const b = num & 255;
-
-    return [r, g, b]
-}
+// const getDarkenHex = () => getDarkenHexColor(randomHex(), -40)
 
 const colorToRGB = (color: RgbColor): RgbColor => {
     return color.map(v => v * 255) as RgbColor
-}
-
-const getGridButton = (grid: IGrid, xy: GridButton['xy']): GridButton | false => {
-    console.log("GRID => ", grid)
-    for (let item of grid) {
-        if (JSON.stringify(item.xy) == JSON.stringify(xy))
-            return item
-    }
-
-    return false
 }
 
 const randomColor = (): number => randomNumber()
@@ -85,22 +65,6 @@ function getDarkColor(amountDarker: number = 20): string {
 const getDarkenRGBColor = (): RgbColor => {
     return hexToRgb(getDarkColor(80))
 }
-  
-
-const generateGrid = (): IGrid => {
-    let grid: IGrid = new Set()
-
-    for (let x = 0; x <= 8; x++) {
-        for (let y = 0; y <= 8; y++) {
-            grid.add({
-                xy: [x, y],
-                rgb: [0,0,0]
-            })
-        }
-    }
-
-    return grid;
-}
 
 const strobe = (enabled: boolean, speed: number) => {
     if (enabled) {
@@ -122,8 +86,6 @@ const DMX = {
 
 const COLORS = {
     hexToRgb,
-    randomHex,
-    randomRGB,
     randomColor,
     getDarkenRGBColor
 }
@@ -135,8 +97,7 @@ const LP = {
 }
 
 const GRID = {
-    generateGrid,
-    getGridButton
+    
 }
 
 const MATH = {

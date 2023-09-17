@@ -1,15 +1,6 @@
-/**
- * Spawn an Express.JS Server and attach a DMX-Controller adapter through the SerialPort Interface.
- * 
- * Environment variables:
- *   - serialPort: The port the DMX-Controller is connected to.
- *   - serverPort:  The HTTP/TCP Port the server with Listen for incoming requests & connections.
- */
-
+import { DMX, EnttecUSBDMXProDriver } from 'dmx-ts'
 import express from 'express'
-import { DMX, EnttecUSBDMXProDriver, Animation } from 'dmx-ts'
 import type { AppDMXProps } from '../types'
-import { MATH } from '../utils'
 
 let dmx: any
 
@@ -25,27 +16,6 @@ const setupDMX = async (serialPort: string) => {
     return {
         driver, universe, reset
     }
-}
-
-const startAnimation = () => {
-    new Animation()
-        .add({
-            1: MATH.randomNumber(0, 255),
-            2: MATH.randomNumber(0, 255),
-            3: MATH.randomNumber(0, 255)
-        }, 500)
-        .add({
-            1: MATH.randomNumber(50, 90),
-            2: MATH.randomNumber(30, 40),
-            3: MATH.randomNumber(150,230)
-        }, 1000)
-        .add({
-            1: MATH.randomNumber(175),
-            2: MATH.randomNumber(100),
-            3: MATH.randomNumber(200)
-        }, 1000)
-        .runLoop(dmx.universe)
-
 }
 
 const Application = async ({ serialPort, serverPort }: AppDMXProps) => {
@@ -77,8 +47,6 @@ const Application = async ({ serialPort, serverPort }: AppDMXProps) => {
     server.get('/dmx/strobe', (req, res) => {
         res.sendStatus(200)
     })
-
-    // startAnimation()
 }
 
 Application({
@@ -86,3 +54,26 @@ Application({
     serverPort: (process.env.SERVER_PORT || 3000) as number
 })
 
+
+
+
+// const startAnimation = () => {
+//     new Animation()
+//         .add({
+//             1: MATH.randomNumber(0, 255),
+//             2: MATH.randomNumber(0, 255),
+//             3: MATH.randomNumber(0, 255)
+//         }, 500)
+//         .add({
+//             1: MATH.randomNumber(50, 90),
+//             2: MATH.randomNumber(30, 40),
+//             3: MATH.randomNumber(150,230)
+//         }, 1000)
+//         .add({
+//             1: MATH.randomNumber(175),
+//             2: MATH.randomNumber(100),
+//             3: MATH.randomNumber(200)
+//         }, 1000)
+//         .runLoop(dmx.universe)
+
+// }

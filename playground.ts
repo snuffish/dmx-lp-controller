@@ -1,25 +1,16 @@
+import { Color } from "./src/launchpad/Color"
+import NewGrid, { Grid } from "./src/launchpad/Grid"
 
+/**
+const filter1 = (value: number) => value * 2
+const filter2 = (value: number) => value * .8
+const output = (value: number) => `Output: ${value}`
 
+console.log(pipe(filter1, filter2, output)(10)) ==> Output: 16
+ */
+const pipe = (...fns: Function[]) => (val: any) => fns.reduce((prev, fn) => fn(prev), val)
 
+const grid = NewGrid()
+// console.log(grid)
 
-class Grid {
-    private matrix = new Map<string, number>()
-
-    constructor() {
-        this.setupMatrix()
-    }
-
-    setupMatrix() {
-        for (let x = 0; x <= 8; x++) {
-            for (let y = 0; y <= 8; y++) {
-                if ((x === 0 && y === 8) || x === 8 && y === 0)
-                    continue
-                
-                this.matrix.set(`${x}x${y}`, 0)
-            }
-        }
-    }
-}
-
-const grid = new Grid()
-
+console.log(Color.RGB.OFF)
