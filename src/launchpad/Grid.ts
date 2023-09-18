@@ -37,7 +37,7 @@ export namespace Grid {
         export const KEYS = () => getItem('6x0')
         export const USER = () => getItem('7x0')
     }
-} 
+}
 
 const CreateGrid = (lp: ILaunchpad): Grid.Item[] => {
     grid = allXy(9, 9).map(([x, y]) => {
