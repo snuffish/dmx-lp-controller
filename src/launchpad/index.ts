@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { autoDetect, Button, ILaunchpad, RgbColor } from 'launchpad.js';
 import { DMX, range } from '../utils';
 import { Color } from './Color';
@@ -27,15 +26,19 @@ const rgbToDMX = (color: RgbColor) => {
 }
 
 const setupPad = () => {
+    console.log("JAAA =>", Grid.Panel.Right.STOP_SOLO_MUTE())
+
     // Generate colors on the pad
     for (let y of range(1,8)) {
         const item = Grid.getItem(`0x${y}`)
-        item?.color.setColor(Color.RGB.random())
-        item?.onTrigger = () => rgbToDMX(item?.color.rgb)
+        if (!item) return
+        
+        item.color.setColor(Color.RGB.random())
+        item.onTrigger = () => rgbToDMX(item?.color.rgb)
     }
 
     // Clear the DMX
-    const soloMuteButton = Grid.getItem('8x8')
+    const soloMuteButton = Grid.Panel.Right.STOP_SOLO_MUTE()
     soloMuteButton?.color.setColor(Color.RGB.red)
     if (soloMuteButton)
         soloMuteButton.onTrigger = () => DMX.clear()
@@ -53,7 +56,7 @@ const setupPad = () => {
     }
 }
 
-const onActionButton = (event: Grid.ButtonEvent, button: Button) => {
+const onActionButton = (event: Grid.Button.Event, button: Button) => {
     console.debug(`[${event}] `, button)
 
     const item = Grid.getItem(button.xy)
@@ -64,8 +67,8 @@ const Application = async () => {
     lp = autoDetect()
 
     lp.once('ready', init)
-    lp.on('buttonDown', button => onActionButton(Grid.ButtonEvent.DOWN, button))
-    lp.on('buttonUp', button => onActionButton(Grid.ButtonEvent.UP, button))
+    lp.on('buttonDown', button => onActionButton(Grid.Button.Event.DOWN, button))
+    lp.on('buttonUp', button => onActionButton(Grid.Button.Event.UP, button))
 
 }
 

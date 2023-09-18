@@ -20,8 +20,8 @@ export namespace Color {
 
     export const HEX = {
         random: () => Math.floor(Math.random() * 16777215).toString(16),
-        toRGB: (value: string): RgbColor => {
-            const bigint = parseInt(value, 16);
+        toRGB: (hexValue: string): RgbColor => {
+            const bigint = parseInt(hexValue, 16);
             const r = (bigint >> 16) & 255;
             const g = (bigint >> 8) & 255;
             const b = bigint & 255;
