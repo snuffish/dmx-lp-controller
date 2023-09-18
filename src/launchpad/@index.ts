@@ -1,8 +1,9 @@
 // @ts-nocheck
 import { autoDetect, Button, colors, ILaunchpad, RgbColor } from 'launchpad.js'
 import { AppLaunchpadProps, ButtonEvent, GridButton, IGrid } from '../types'
-import { COLORS, DMX, LP, GRID } from '../utils'
+import { COLORS, DMX, LP, GRID, pipe } from '../utils'
 import { colorFromHex, colorFromRGB } from 'launchpad.js/dist/colorHelpers'
+import { Grid } from './Grid'
 
 let lp: ILaunchpad
 
@@ -24,6 +25,16 @@ const hexRNGScript = (lp: ILaunchpad): void => {
             // lp.setButtonColor([x,y], colorFromRGB(rgb))
         }
     }
+
+    // Get the LP button and use a function-pipeline
+    // const button = Grid.Panel.Right.STOP_SOLO_MUTE()
+    // button?.onTrigger = pipe(DMX.clear(), lp.allOff())()
+
+    // button?.onTrigger = () => {
+    //     // When pressed: Clear the DMX Universe and the LaunchPad Lightning
+    //     DMX.clear()
+    //     lp.allOff()
+    // }
 
     const newColorButton = GRID.getGridButton(grid, [8,7])
     if (newColorButton) {

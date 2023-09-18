@@ -78,8 +78,20 @@ const strobe = (enabled: boolean, speed: number) => {
     }
 }
 
-export const range = (start: number = 0, stop: number = 8, step: number = 1) => 
-  Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step))
+export const range = (start: number = 0, stop: number = 8, step: number = 1) =>
+    Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step))
+
+
+
+/**
+const filter1 = (value: number) => value * 2
+const filter2 = (value: number) => value * .8
+const output = (value: number) => `Output: ${value}`
+
+console.log(pipe(filter1, filter2, output)(10)) ==> Output: 16
+ */
+export const pipe = (...fns: Function[]) => (val: any) => fns.reduce((prev, fn) => fn(prev), val)
+
 
 const DMX = {
     update,
@@ -99,10 +111,6 @@ const LP = {
     colorToRGB
 }
 
-const GRID = {
-    
-}
-
 const MATH = {
     randomNumber
 }
@@ -111,6 +119,5 @@ export {
     DMX,
     COLORS,
     LP,
-    GRID,
     MATH
 }
