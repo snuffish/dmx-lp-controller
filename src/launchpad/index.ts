@@ -1,4 +1,4 @@
-import { autoDetect, Button, ILaunchpad, RgbColor } from 'launchpad.js';
+import { autoDetect, Button, ILaunchpad, isButton, RgbColor } from 'launchpad.js';
 import { DMX, range } from '../utils';
 import { Color } from './Color';
 import createGrid, { Grid } from './Grid';
@@ -12,8 +12,6 @@ const init = (name: string) => {
 
     DMX.clear()
     lp.allOff()
-
-    setupPad()
 }
 
 const rgbToDMX = (color: RgbColor) => {

@@ -1,30 +1,45 @@
+import { UniverseData } from "dmx-ts"
 import { IntRange } from "../types"
+import { Channel, ConstructProps, DmxChannel } from "./Fixture"
+
+// type ChannelMode = 3 | 5 | 8 | 14 | 24 | 26
 
 
 
-interface ChannelMode {
-    mode: number
-    [key: number]: Control
+
+type Props = ConstructProps<3>
+
+type Funcs = {
+    getDmx: () => string
 }
 
+type ReturnType = Props & {
+    getDmx: Function,
+    channels: Channel[]
+} & Funcs
 
-interface Control {
-    nr: IntRange<1,512>,
-    value: IntRange<0, 255>,
-    function: Function
+
+const LedBarRGB = ({
+    name = 'BAR 240-10 RGB',
+    channelMode,
+    startChannel = 1
+}: Props): ReturnType => {
+    let universalChannel = startChannel
+    let chn = 1
+    let channels: Channel[] = Array.from({length: channelMode}).map(() => ({
+        channel: chn++ as DmxChannel,
+        universalChannel: universalChannel++ as DmxChannel,
+        value: 0
+    }))
+
+    let fixture: ReturnType = {
+        name,
+        channelMode,
+        channels,
+        getDMX: () => "DS"        
+    }
+
+    return fixture
 }
 
-
-
-// const mode = new Map()
-// mode.add()
-
-const data = {
-    channelMode: 3,
-    controls: [
-        {
-            channel: 1,
-            value: 100
-        }
-    ]
-}
+export default LedBarRGB
