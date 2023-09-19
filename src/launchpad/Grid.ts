@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Button, ButtonIn, ILaunchpad, RgbColor } from "launchpad.js"
 import FixtureBase from "../fixtures/FixtureBase"
 

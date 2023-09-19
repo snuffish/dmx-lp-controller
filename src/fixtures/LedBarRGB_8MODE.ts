@@ -31,7 +31,7 @@ type Props = {
     channelMode: 3
 }
 
-class LedBarRGB extends FixtureBase<GridButtonType> {
+class LedBarRGB_8MODE extends FixtureBase<GridButtonType> {
     constructor({ channelMode }: Props) {
         super({ name: 'BAR 240-10 RGB', channelMode, channelSetup })
     }
@@ -39,19 +39,19 @@ class LedBarRGB extends FixtureBase<GridButtonType> {
     gridButtonSetup(): GridButtonType[] {
         return [
             {
-                xy: [0, 8],
+                xy: [5, 8],
                 color: Color.RGB.blue
             },
             {
-                xy: [0, 7],
+                xy: [5, 7],
                 color: Color.RGB.red
             },
             {
-                xy: [0, 6],
+                xy: [5, 6],
                 color: Color.RGB.orange
             },
             {
-                xy: [0, 5],
+                xy: [5, 5],
                 color: Color.RGB.green
             }
         ]
@@ -65,4 +65,4 @@ class LedBarRGB extends FixtureBase<GridButtonType> {
     
 }
 
-export default LedBarRGB
+export default LedBarRGB_8MODE

@@ -1,5 +1,35 @@
-import { Channel, ChannelSetup, IFixture } from "./src/fixtures/Fixture"
+import { find } from "lodash";
 import LedBarRGB from "./src/fixtures/LedBarRGB"
+import { Color } from "./src/launchpad/Color";
+
+
+
+
+
+
+
+
+
+var users = [
+    {
+        xy: [0, 8],
+        color: Color.RGB.blue
+    },
+    {
+        xy: [0, 7],
+        color: Color.RGB.red
+    },
+    {
+        xy: [0, 6],
+        color: Color.RGB.orange
+    },
+    {
+        xy: [0, 5],
+        color: Color.RGB.green
+    }
+]
+
+  console.log(find(users, {xy: [0,225]}))
 
 
 
@@ -10,11 +40,7 @@ import LedBarRGB from "./src/fixtures/LedBarRGB"
 //     channelSetup
 // })
 
-const fixture = new LedBarRGB({
-    channelMode: 3
-})
 
-console.log(fixture)
 
 
 
