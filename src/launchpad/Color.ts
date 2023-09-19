@@ -1,4 +1,5 @@
 import { RgbColor } from "launchpad.js";
+import { colorFromRGB } from "launchpad.js/dist/colorHelpers";
 
 export namespace Color {
     export const RGB = {
@@ -31,6 +32,6 @@ export namespace Color {
     }
 
     export const LP = {
-
+        random: () => colorFromRGB(RGB.random())
     }
 }

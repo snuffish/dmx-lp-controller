@@ -1,28 +1,21 @@
-import { ChannelSetup } from "./src/fixtures/Fixture"
+import { Channel, ChannelSetup, IFixture } from "./src/fixtures/Fixture"
 import LedBarRGB from "./src/fixtures/LedBarRGB"
 
 
-const channelSetup: ChannelSetup = {
-    1: {
-        universeChannel: 1,
-        description: 'Red'
-    },
-    2: {
-        universeChannel: 2,
-        description: 'Green'
-    },
-    3: {
-        universeChannel: 3,
-        description: 'Blue'
-    }
-}
 
 
-const fixture = LedBarRGB({
-    channelSetup
+
+// const fixture = LedBarRGB({
+//     channelMode: 3,
+//     channelSetup
+// })
+
+const fixture = new LedBarRGB({
+    channelMode: 3
 })
 
 console.log(fixture)
+
 
 
 // const LedBarRGB: IFixture = {
@@ -108,3 +101,8 @@ console.log(fixture)
 // const obj = new FixtureBase()
 // console.log(obj)
 
+// const LedBarRGB = ({ channelMode, channelSetup }: Props): IFixture => ({
+//     name: 'BAR 240-10 RGB',
+//     channelMode,
+//     channels: channelSetup ? setupChannels(channelSetup) : channelDefault(3)
+// })
