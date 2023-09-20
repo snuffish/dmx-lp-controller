@@ -1,5 +1,5 @@
-import { Button, ButtonIn, ButtonStyle, ILaunchpad, LaunchpadMK3, RgbColor } from 'launchpad.js';
-import { BaseLaunchpad } from 'launchpad.js/dist/launchpads/base/BaseLaunchpad';
+// import { Button, ButtonIn, ButtonStyle, ILaunchpad, LaunchpadMK3, RgbColor } from 'launchpad.js';
+// import { BaseLaunchpad } from 'launchpad.js/dist/launchpads/base/BaseLaunchpad';
 // import MyComponent from './MyComponent'
 // import Emitter from './src/Emitter'
 
@@ -11,7 +11,22 @@ import { BaseLaunchpad } from 'launchpad.js/dist/launchpads/base/BaseLaunchpad';
 
 // console.log(Emitter.eventNames())
 
+import { EventEmitter } from 'tseep'
 
+const events = new EventEmitter<{
+    buttonDown: (value: any) => void
+}>
+
+
+events.on('buttonDown', (value) => {
+    console.log(`VALUE => ${value}`)
+})
+
+events.on('buttonDown', (value) => {
+    console.log(`VALUE => ${value}`)
+})
+
+events.emit('buttonDown', `TEST DATA`) 
 
 
 
