@@ -1,38 +1,11 @@
-import { find } from "lodash";
-import LedBarRGB from "./src/fixtures/LedBarRGB"
-import { Color } from "./src/launchpad/Color";
+import MyComponent from './MyComponent'
+import Emitter from './src/Emitter'
 
+Emitter.on('play', () => {
+    console.log("PLAYED CALLED!")
+})
 
-
-
-
-
-
-
-
-var users = [
-    {
-        xy: [0, 8],
-        color: Color.RGB.blue
-    },
-    {
-        xy: [0, 7],
-        color: Color.RGB.red
-    },
-    {
-        xy: [0, 6],
-        color: Color.RGB.orange
-    },
-    {
-        xy: [0, 5],
-        color: Color.RGB.green
-    }
-]
-
-  console.log(find(users, {xy: [0,225]}))
-
-
-
+const comp = new MyComponent()
 
 
 // const fixture = LedBarRGB({
