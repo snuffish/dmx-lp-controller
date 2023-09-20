@@ -7,6 +7,8 @@ Emitter.on('play', () => {
 
 const comp = new MyComponent()
 
+console.log(Emitter.eventNames())
+
 
 // const fixture = LedBarRGB({
 //     channelMode: 3,
