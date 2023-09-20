@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { ILaunchpad, autoDetect } from 'launchpad.js'
 import Emitter from '../Emitter'
 import { DMX } from '../utils'
@@ -38,3 +39,29 @@ class Launchpad {
 }
 
 export default Launchpad
+=======
+// import { autoDetect } from 'launchpad.js';
+// import LedBarRGB from '../fixtures/LedBarRGB';
+// import { DMX } from '../utils';
+// import Grid from './Grid';
+
+// function Application(device: string) {
+//     console.log(`Connected to ${device}`)
+    
+//     DMX.clear()
+//     lp.allOff()
+    
+//     const grid = new Grid(lp)
+//     const fixture = new LedBarRGB({ channelMode: 3 })
+//     grid.addFixture(fixture)
+// }
+
+// let lp = autoDetect()
+// lp.once('ready', Application)
+ 
+class Launchpad {
+
+}
+
+export default Launchpad
+>>>>>>> 343cb0067e2f659eb1ca1b34c681d150275d1388
