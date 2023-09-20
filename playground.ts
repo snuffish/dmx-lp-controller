@@ -1,13 +1,18 @@
-import MyComponent from './MyComponent'
-import Emitter from './src/Emitter'
+import { Button, ButtonIn, ButtonStyle, ILaunchpad, LaunchpadMK3, RgbColor } from 'launchpad.js';
+import { BaseLaunchpad } from 'launchpad.js/dist/launchpads/base/BaseLaunchpad';
+// import MyComponent from './MyComponent'
+// import Emitter from './src/Emitter'
 
-Emitter.on('play', () => {
-    console.log("PLAYED CALLED!")
-})
+// Emitter.on('play', () => {
+//     console.log("PLAYED CALLED!")
+// })
 
-const comp = new MyComponent()
+// const comp = new MyComponent()
 
-console.log(Emitter.eventNames())
+// console.log(Emitter.eventNames())
+
+
+
 
 
 // const fixture = LedBarRGB({
