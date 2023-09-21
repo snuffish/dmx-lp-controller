@@ -1,4 +1,4 @@
-import {  ILaunchpad, RgbColor, autoDetect, waitForReady } from 'launchpad.js'
+import {  ILaunchpad, LaunchpadMK3, RgbColor, autoDetect, waitForReady } from 'launchpad.js'
 import { colorFromRGB } from 'launchpad.js/dist/colorHelpers'
 import BaseComponent from './components/BaseComponent'
 import { DMX } from '../utils'

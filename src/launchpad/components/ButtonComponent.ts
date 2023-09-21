@@ -1,34 +1,30 @@
-import { RgbColor } from 'launchpad.js'
+import { ButtonIn, RgbColor, isButton } from 'launchpad.js'
 import { lpEmitter } from '../../emitter'
 import { Color } from '../Color'
 import { GridMatrix } from '../Grid'
 import { buttonLogOutput } from '../Logger'
-import BaseComponent, { Button } from './BaseComponent'
+import BaseComponent from './BaseComponent'
+import IButtonBehaviour from '../behaviours/IButtonBehaviour'
+import { isEqual } from 'lodash'
+
+export type Button = ButtonIn & { event: ButtonEvent }
 
 export enum ButtonEvent {
     DOWN = 'DOWN',
     UP = 'UP'
-} 
-
-export const buttonPressed = (button: Button, event: ButtonEvent) => {
-    button.event = event
-    if (event == ButtonEvent.DOWN) buttonDown(button)
-    else if (event == ButtonEvent.UP) buttonUp(button)
 }
 
-const buttonDown = (button: Button) => {
-    console.log(buttonLogOutput(button))
-}
+const isThisComponent = (component: BaseComponent, button: Button) =>
+    isButton(button) && isEqual(component.position, button.xy)
 
-const buttonUp = (button: Button) => {
-    console.log(buttonLogOutput(button))
-}
-
-class ButtonComponent extends BaseComponent {
+class ButtonComponent extends BaseComponent implements IButtonBehaviour {
     private _color: RgbColor = Color.RGB.off
     
     constructor(position: GridMatrix) {
         super(position)
+
+        lpEmitter.on('buttonPressed', (button: Button, event: ButtonEvent) =>
+            isThisComponent(this, button) && (event == ButtonEvent.DOWN ? this.onPressed() : this.onRelease()))
         
         this.setRandomColor()
     }
@@ -42,13 +38,14 @@ class ButtonComponent extends BaseComponent {
     }
     
     onPressed(): void {
+        console.log(buttonLogOutput({...this.position, event: ButtonEvent.DOWN}))
         const [r, g, b] = this.color
         let x = 10
         // DMX.update({ 1: r/x, 2: g/x, 3: b/x })
     }
 
     onRelease(): void {
-        throw new Error('Method not implemented.')
+        console.log(buttonLogOutput({...this.position, event: ButtonEvent.UP}))
     }
 }
 

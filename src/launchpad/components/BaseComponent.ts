@@ -1,25 +1,12 @@
-import { ButtonIn, isButton } from 'launchpad.js'
-import { lpEmitter } from '../../emitter';
-import { ButtonEvent } from './ButtonComponent';
-import { isEqual } from 'lodash';
-
-export type Button = ButtonIn & { event: ButtonEvent }
-
-const isThisComponent = (component: BaseComponent, button: Button) =>
-    isButton(button) && isEqual(component.position, button.xy)
+import { GridMatrix } from "../Grid";
 
 abstract class BaseComponent {
-    private _position: Button
+    private _position: GridMatrix
 
-    constructor(position: Button) {
+    constructor(position: GridMatrix) {
         this._position = position;
-
-        lpEmitter.on('buttonPressed', (button: Button, event: ButtonEvent) =>
-            isThisComponent(this, button) && (event == ButtonEvent.DOWN ? this.onPressed() : this.onRelease()))
+        // @TODO: Map the GridMatrix to a Button object
     }
-
-    abstract onPressed(): void
-    abstract onRelease(): void
 
     get position() { return this._position }
 }

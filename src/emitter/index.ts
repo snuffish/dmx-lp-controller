@@ -1,8 +1,8 @@
 import { UniverseData } from "dmx-ts"
 import { RgbColor } from "launchpad.js"
 import { DefaultEventMap, EventEmitter } from "tseep"
-import BaseComponent, { Button } from "../launchpad/components/BaseComponent"
-import ButtonComponent, { ButtonEvent } from "../launchpad/components/ButtonComponent"
+import BaseComponent from "../launchpad/components/BaseComponent"
+import ButtonComponent, { Button, ButtonEvent } from "../launchpad/components/ButtonComponent"
 
 const createEmitter = <T extends DefaultEventMap>() => new EventEmitter<T>()
 
