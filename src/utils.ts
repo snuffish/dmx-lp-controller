@@ -23,7 +23,7 @@ const update = async (data: UniverseData) => {
 }
 
 const clear = async () => {
-    const req = await fetch(`${BASE_URL}/dmx/clear`)
+    // const req = await fetch(`${BASE_URL}/dmx/clear`)
 }
 
 const hexToRgb = (hex: string): RgbColor => {

@@ -26,13 +26,17 @@ const buttonUp = (button: Button) => {
     console.log(buttonLogOutput(button))
 }
 
+type Props = {
+    xy: GridMatrix
+    color?: RgbColor
+}
+
 class ButtonComponent extends BaseComponent {
     private _color: RgbColor = Color.RGB.off
 
-    constructor(position: GridMatrix) {
-        super(position)
-
-        this.setRandomColor()
+    constructor({ xy, color = Color.RGB.red }: Props) {
+        super(xy)
+        this.color = color
     }
 
     public get color() { return this._color }
