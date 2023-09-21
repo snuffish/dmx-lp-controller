@@ -10,6 +10,8 @@ const Launchpad = () => {
 
     const clear = () => lp.allOff()
 
+    const setButtonColor = (component: BaseComponent, color: RgbColor) => lp.setButtonColor(component.position, colorFromRGB(color))
+
     lp.once('ready', (device: string) => {
         console.log(`Connected to ${device}`)
         DMX.clear()
@@ -17,11 +19,7 @@ const Launchpad = () => {
 
     lp.on('buttonDown', (button: any) => lpEmitter.emit('buttonPressed', button, ButtonEvent.DOWN))
     .on('buttonUp', (button: any) => lpEmitter.emit('buttonPressed', button, ButtonEvent.UP))
-
-    const setButtonColor = (component: BaseComponent, color: RgbColor) => {
-        lp.setButtonColor(component.position, colorFromRGB(color))
-    }
-
+    
    
     lpEmitter.on('setButtonColor', setButtonColor)
 
