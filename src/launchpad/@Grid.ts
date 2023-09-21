@@ -1,8 +1,8 @@
 import { allXy, range } from "launchpad.js/dist/internal/utils"
 import { LP, arrayEquals } from "../utils"
 import { ILaunchpad, RgbColor } from "launchpad.js"
-import { Color } from "./Color"
 import { colorFromRGB } from "launchpad.js/dist/colorHelpers"
+import Color from "../utils/Color"
 
 let grid: Grid.Item[]
 

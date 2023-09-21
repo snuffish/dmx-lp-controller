@@ -1,7 +1,7 @@
 import { UniverseData } from "dmx-ts"
 
 interface IFixtureBehaviour {
-    fixtureName: string
+    readonly fixtureName: string
     channels: []
     dmx: () => UniverseData
 }

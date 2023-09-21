@@ -1,6 +1,6 @@
 import { ButtonIn, RgbColor, isButton } from 'launchpad.js'
 import { lpEmitter } from '../../emitter'
-import { Color } from '../Color'
+import Color from '../../utils/Color'
 import { GridMatrix } from '../Grid'
 import { buttonLogOutput } from '../Logger'
 import BaseComponent from './BaseComponent'

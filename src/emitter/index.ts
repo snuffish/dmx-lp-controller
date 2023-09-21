@@ -10,6 +10,7 @@ const lpEmitter = createEmitter<{
     buttonPressed: (button: Button, event: ButtonEvent) => void
     addComponentToGrid: (component: BaseComponent) => void
     setButtonColor: (component: ButtonComponent, color: RgbColor) => void
+    clear: () => void
 }>()
 
 const dmxEmitter = createEmitter<{

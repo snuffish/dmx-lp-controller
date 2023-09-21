@@ -18,10 +18,11 @@ const Launchpad = () => {
     })
 
     lp.on('buttonDown', (button: any) => lpEmitter.emit('buttonPressed', button, ButtonEvent.DOWN))
-    .on('buttonUp', (button: any) => lpEmitter.emit('buttonPressed', button, ButtonEvent.UP))
+        .on('buttonUp', (button: any) => lpEmitter.emit('buttonPressed', button, ButtonEvent.UP))
     
    
     lpEmitter.on('setButtonColor', setButtonColor)
+        .on('clear', clear)
 
     return {
         clear

@@ -1,8 +1,18 @@
 import { RgbColor } from "launchpad.js";
 import { colorFromRGB } from "launchpad.js/dist/colorHelpers";
 
-export namespace Color {
-    export const RGB = {
+// type ColorType = {
+//     [key: string]: RgbColor | Function
+// }
+
+// type ColorProps = {
+//     RGB: ColorType
+//     HEX: ColorType
+//     LP: ColorType
+// }
+
+const Color = {
+    RGB: {
         off: [0, 0, 0] as RgbColor,
         red: [255, 0, 0] as RgbColor,
         green: [0, 255, 0] as RgbColor,
@@ -17,9 +27,8 @@ export namespace Color {
         
             return [r, g, b]
         }
-    }
-
-    export const HEX = {
+    },
+    HEX: {
         random: () => Math.floor(Math.random() * 16777215).toString(16),
         toRGB: (hexValue: string): RgbColor => {
             const bigint = parseInt(hexValue, 16);
@@ -29,9 +38,10 @@ export namespace Color {
         
             return [r, g, b]
         }
-    }
-
-    export const LP = {
-        random: () => colorFromRGB(RGB.random())
+    },
+    LP: {
+        random: (): RgbColor => colorFromRGB(Color.RGB.random())
     }
 }
+
+export default Color

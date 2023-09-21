@@ -1,6 +1,6 @@
 import { autoDetect, Button, ILaunchpad, isButton, RgbColor } from 'launchpad.js';
 import { DMX, range } from '../utils';
-import { Color } from './Color';
+import Color from '../utils/Color';
 import createGrid, { Grid } from './@Grid';
 
 let lp: ILaunchpad
