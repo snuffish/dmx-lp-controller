@@ -6,7 +6,6 @@ import { Button } from "./components/BaseComponent"
 type Size = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 export type GridMatrix = Button & [Size, Size]
 export type GridButton = Button
-export enum ButtonEvent { DOWN = 'DOWN', UP = 'UP' }
 
 class Grid {
     private lp: ILaunchpad

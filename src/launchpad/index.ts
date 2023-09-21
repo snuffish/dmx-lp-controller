@@ -1,9 +1,9 @@
-import {  ILaunchpad, LaunchpadMK3, RgbColor, autoDetect, waitForReady } from 'launchpad.js'
+import { ILaunchpad, RgbColor, autoDetect } from 'launchpad.js'
 import { colorFromRGB } from 'launchpad.js/dist/colorHelpers'
-import BaseComponent from './components/BaseComponent'
-import { DMX } from '../utils'
 import { lpEmitter } from '../emitter'
 import { ButtonEvent } from '../types'
+import { DMX } from '../utils'
+import BaseComponent from './components/BaseComponent'
 
 const Launchpad = () => {
     const lp: ILaunchpad = autoDetect()
@@ -19,7 +19,8 @@ const Launchpad = () => {
         .on('buttonUp', (button: any) => lpEmitter.emit('buttonPressed', button, ButtonEvent.UP))
     
    
-    lpEmitter.on('setButtonColor', setButtonColor)
+    lpEmitter
+        .on('setButtonColor', setButtonColor)
         .on('clear', clear)
 
     return {
