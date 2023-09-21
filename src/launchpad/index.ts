@@ -1,67 +1,32 @@
-<<<<<<< HEAD
-import { ILaunchpad, autoDetect } from 'launchpad.js'
-import Emitter from '../Emitter'
-import { DMX } from '../utils'
-import { Color } from './Color'
-import ButtonComponent from './components/ButtonComponent'
+import {  ILaunchpad, RgbColor, autoDetect, waitForReady } from 'launchpad.js'
+import Emitter from '../emitter'
 import { colorFromRGB } from 'launchpad.js/dist/colorHelpers'
+import BaseComponent from './components/BaseComponent'
+import { DMX } from '../utils'
+import { ButtonEvent } from './components/ButtonComponent'
 
-class Launchpad {
-    private _lp: ILaunchpad;
-    private _grid: Set<any> = new Set()
+const Launchpad = () => {
+    const lp: ILaunchpad = autoDetect()
 
-    constructor() {
+    const clear = () => lp.allOff()
+
+    lp.once('ready', (device: string) => {
+        console.log(`Connected to ${device}`)
         DMX.clear()
-        this._lp = autoDetect()
-        this.setupListeners()
+    })
+    lp.on('buttonDown', (button: any) => Emitter.emit('buttonPressed', button, ButtonEvent.DOWN))
+    .on('buttonUp', (button: any) => Emitter.emit('buttonPressed', button, ButtonEvent.UP))
+
+    const setButtonColor = (component: BaseComponent, color: RgbColor) => {
+        lp.setButtonColor(component.position, colorFromRGB(color))
     }
 
-    public clear() {
-        this._lp.allOff()
-        return true
-    }
+   
+    Emitter.on('setButtonColor', setButtonColor)
 
-    private setupListeners() {
-        this._lp.once('ready', (device: string) => this.clear() && Emitter.emit('lpReady', device))
-
-        Emitter.on('addButton', (component: ButtonComponent) => {
-            this._grid.add(component)
-            this._lp.setButtonColor(component.position, Color.LP.random())
-        })
-
-        this._lp.on('buttonDown', button => Emitter.emit('componentPressed', button))
-
-        Emitter.on('setButtonColor', (component: any) => {
-            const [r, g, b] = component.color
-            DMX.update({ 1: r, 2: g, 3: b })
-        })
+    return {
+        clear
     }
 }
 
 export default Launchpad
-=======
-// import { autoDetect } from 'launchpad.js';
-// import LedBarRGB from '../fixtures/LedBarRGB';
-// import { DMX } from '../utils';
-// import Grid from './Grid';
-
-// function Application(device: string) {
-//     console.log(`Connected to ${device}`)
-    
-//     DMX.clear()
-//     lp.allOff()
-    
-//     const grid = new Grid(lp)
-//     const fixture = new LedBarRGB({ channelMode: 3 })
-//     grid.addFixture(fixture)
-// }
-
-// let lp = autoDetect()
-// lp.once('ready', Application)
- 
-class Launchpad {
-
-}
-
-export default Launchpad
->>>>>>> 343cb0067e2f659eb1ca1b34c681d150275d1388

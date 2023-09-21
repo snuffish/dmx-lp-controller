@@ -11,24 +11,11 @@
 
 // console.log(Emitter.eventNames())
 
-import { EventEmitter } from 'tseep'
 
-const events = new EventEmitter<{
-    buttonDown: (value: any) => void
-}>
+import Emitter from './src/emitter';
 
-
-events.on('buttonDown', (value) => {
-    console.log(`VALUE => ${value}`)
-})
-
-events.on('buttonDown', (value) => {
-    console.log(`VALUE => ${value}`)
-})
-
-events.emit('buttonDown', `TEST DATA`) 
-
-
+Emitter.emit('buttonDown', "HEJSAN123")
+console.log(Emitter)
 
 // const fixture = LedBarRGB({
 //     channelMode: 3,
