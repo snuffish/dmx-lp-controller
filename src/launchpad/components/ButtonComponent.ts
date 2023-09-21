@@ -1,56 +1,51 @@
-import { ButtonIn, RgbColor } from 'launchpad.js'
-import Emitter, { Button } from '../../emitter'
-import { Color } from '../Color'
+import { ButtonIn, RgbColor, isButton } from 'launchpad.js'
+import { lpEmitter } from '../../emitter'
+import Color from '../../utils/Color'
+import { GridMatrix } from '../Grid'
 import { buttonLogOutput } from '../Logger'
 import BaseComponent from './BaseComponent'
-import { DMX } from '../../utils'
-import { GridMatrix } from '../Grid'
+import IButtonBehaviour from '../behaviours/IButtonBehaviour'
 import { isEqual } from 'lodash'
+
+export type Button = ButtonIn & { event: ButtonEvent }
 
 export enum ButtonEvent {
     DOWN = 'DOWN',
     UP = 'UP'
-} 
-
-export const buttonPressed = (button: Button, event: ButtonEvent) => {
-    button.event = event
-    if (event == ButtonEvent.DOWN) buttonDown(button)
-    else if (event == ButtonEvent.UP) buttonUp(button)
 }
 
-const buttonDown = (button: Button) => {
-    console.log(buttonLogOutput(button))
-}
+const isThisComponent = (component: BaseComponent, button: Button) =>
+    isButton(button) && isEqual(component.position, button.xy)
 
-const buttonUp = (button: Button) => {
-    console.log(buttonLogOutput(button))
-}
-
-type Props = {
-    xy: GridMatrix
-    color?: RgbColor
-}
-
-class ButtonComponent extends BaseComponent {
+class ButtonComponent extends BaseComponent implements IButtonBehaviour {
     private _color: RgbColor = Color.RGB.off
+    
+    constructor(position: GridMatrix) {
+        super(position)
 
-    constructor({ xy, color = Color.RGB.red }: Props) {
-        super(xy)
-        this.color = color
+        lpEmitter.on('buttonPressed', (button: Button, event: ButtonEvent) =>
+            isThisComponent(this, button) && (event == ButtonEvent.DOWN ? this.onPressed() : this.onRelease()))
+        
+        this.setRandomColor()
     }
-
+    
     public get color() { return this._color }
     public set color(color: RgbColor) { this._color = color }
-
+    
     setRandomColor() {
         this.color = Color.RGB.random()
-        Emitter.emit('setButtonColor', this, this.color)
+        lpEmitter.emit('setButtonColor', this, this.color)
     }
-
+    
     onPressed(): void {
+        console.log(buttonLogOutput({...this.position, event: ButtonEvent.DOWN}))
         const [r, g, b] = this.color
         let x = 10
-        DMX.update({ 1: r/x, 2: g/x, 3: b/x })
+        // DMX.update({ 1: r/x, 2: g/x, 3: b/x })
+    }
+
+    onRelease(): void {
+        console.log(buttonLogOutput({...this.position, event: ButtonEvent.UP}))
     }
 }
 

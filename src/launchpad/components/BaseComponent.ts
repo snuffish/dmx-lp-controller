@@ -1,20 +1,12 @@
-// @ts-nocheck
-import { ButtonIn } from 'launchpad.js'
-import Emitter, { Button } from '../../emitter';
-import { ButtonEvent } from './ButtonComponent';
-import { isEqual } from 'lodash';
+import { GridMatrix } from "../Grid";
 
 abstract class BaseComponent {
-    private _position: ButtonIn
+    private _position: GridMatrix
 
-    constructor(position: ButtonIn) {
+    constructor(position: GridMatrix) {
         this._position = position;
-        
-        Emitter.on('buttonPressed', (button: Button, event: ButtonEvent) =>
-            isEqual(this._position, button.xy) && this.onPressed())
+        // @TODO: Map the GridMatrix to a Button object
     }
-
-    abstract onPressed(): void
 
     get position() { return this._position }
 }

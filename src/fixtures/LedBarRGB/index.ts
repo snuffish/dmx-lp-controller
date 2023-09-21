@@ -1,8 +1,8 @@
 import { Button, RgbColor } from "launchpad.js";
-import { Color } from '../../launchpad/Color';
 import { DMX } from '../../utils';
 import { ButtonEvent } from '../../launchpad/Grid';
 import FixtureBase, { ChannelControls } from '../FixtureBase';
+import Color from "../../utils/Color";
 
 const channelSetup: ChannelControls = {
     1: {

@@ -1,4 +1,3 @@
-import Emitter from './emitter'
 import Launchpad from './launchpad'
 import ButtonComponent from './launchpad/components/ButtonComponent'
 import StopButtonComponent from './launchpad/components/StopButtonComponent'

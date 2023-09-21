@@ -3,6 +3,8 @@
 // import MyComponent from './MyComponent'
 // import Emitter from './src/Emitter'
 
+import { dmxEmitter, lpEmitter } from "./src/emitter";
+
 // Emitter.on('play', () => {
 //     console.log("PLAYED CALLED!")
 // })
@@ -12,10 +14,6 @@
 // console.log(Emitter.eventNames())
 
 
-import Emitter from './src/emitter';
-
-Emitter.emit('buttonDown', "HEJSAN123")
-console.log(Emitter)
 
 // const fixture = LedBarRGB({
 //     channelMode: 3,
