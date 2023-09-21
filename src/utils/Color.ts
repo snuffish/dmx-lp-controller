@@ -1,16 +1,6 @@
 import { RgbColor } from "launchpad.js";
 import { colorFromRGB } from "launchpad.js/dist/colorHelpers";
 
-// type ColorType = {
-//     [key: string]: RgbColor | Function
-// }
-
-// type ColorProps = {
-//     RGB: ColorType
-//     HEX: ColorType
-//     LP: ColorType
-// }
-
 const Color = {
     RGB: {
         off: [0, 0, 0] as RgbColor,

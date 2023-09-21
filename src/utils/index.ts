@@ -1,8 +1,11 @@
 import { colorFromHex } from 'launchpad.js/dist/colorHelpers';
 import type { UniverseData } from 'dmx-ts'
-import type { RgbColor } from 'launchpad.js'
+import { isButton, type RgbColor } from 'launchpad.js'
 import { colorFromRGB } from 'launchpad.js/dist/colorHelpers'
 import fetch from 'node-fetch'
+import BaseComponent from '../launchpad/components/BaseComponent';
+import { isEqual } from 'lodash';
+import { Button } from '../types';
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3000'
 
@@ -22,8 +25,9 @@ const update = async (data: UniverseData) => {
     await sendRequest('/dmx/update', data)
 }
 
-const clear = async () => {
-    // const req = await fetch(`${BASE_URL}/dmx/clear`)
+const clear = () => {
+    const req = fetch(`${BASE_URL}/dmx/clear`)
+    return true
 }
 
 const hexToRgb = (hex: string): RgbColor => {
@@ -92,6 +96,10 @@ console.log(pipe(filter1, filter2, output)(10)) ==> Output: 16
  */
 export const pipe = (...fns: Function[]) => (val: any) => fns.reduce((prev, fn) => fn(prev), val)
 
+export const isThisComponent = (component: BaseComponent, button: Button) =>
+    isButton(button) && isEqual(component.position, button.xy)
+
+export const arrayToMap = (arr: number[], startFrom: number = 1) => arr.reduce((acc, val): any => ({ ...acc, [++startFrom]: val}), {})
 
 const DMX = {
     update,

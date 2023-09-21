@@ -1,21 +1,12 @@
-import { ButtonIn, RgbColor, isButton } from 'launchpad.js'
+import { RgbColor } from 'launchpad.js'
 import { lpEmitter } from '../../emitter'
+import { DMX, isThisComponent } from '../../utils'
 import Color from '../../utils/Color'
 import { GridMatrix } from '../Grid'
 import { buttonLogOutput } from '../Logger'
-import BaseComponent from './BaseComponent'
 import IButtonBehaviour from '../behaviours/IButtonBehaviour'
-import { isEqual } from 'lodash'
-
-export type Button = ButtonIn & { event: ButtonEvent }
-
-export enum ButtonEvent {
-    DOWN = 'DOWN',
-    UP = 'UP'
-}
-
-const isThisComponent = (component: BaseComponent, button: Button) =>
-    isButton(button) && isEqual(component.position, button.xy)
+import BaseComponent from './BaseComponent'
+import { Button, ButtonEvent } from '../../types'
 
 class ButtonComponent extends BaseComponent implements IButtonBehaviour {
     private _color: RgbColor = Color.RGB.off
@@ -25,23 +16,26 @@ class ButtonComponent extends BaseComponent implements IButtonBehaviour {
 
         lpEmitter.on('buttonPressed', (button: Button, event: ButtonEvent) =>
             isThisComponent(this, button) && (event == ButtonEvent.DOWN ? this.onPressed() : this.onRelease()))
-        
-        this.setRandomColor()
     }
     
     public get color() { return this._color }
-    public set color(color: RgbColor) { this._color = color }
+    public set color(color: RgbColor) {
+        this._color = color
+        lpEmitter.emit('setButtonColor', this, this.color)
+    }
     
     setRandomColor() {
         this.color = Color.RGB.random()
-        lpEmitter.emit('setButtonColor', this, this.color)
+        return this
     }
     
     onPressed(): void {
         console.log(buttonLogOutput({...this.position, event: ButtonEvent.DOWN}))
-        const [r, g, b] = this.color
-        let x = 10
-        // DMX.update({ 1: r/x, 2: g/x, 3: b/x })
+        
+        let i = 0
+        const dmx = this.color.reduce((acc, val): any => ({ ...acc, [++i]: val}), {})
+
+        DMX.update(dmx)
     }
 
     onRelease(): void {

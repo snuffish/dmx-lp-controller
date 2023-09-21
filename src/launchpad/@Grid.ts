@@ -1,8 +1,5 @@
-import { allXy, range } from "launchpad.js/dist/internal/utils"
-import { LP, arrayEquals } from "../utils"
-import { ILaunchpad, RgbColor } from "launchpad.js"
-import { colorFromRGB } from "launchpad.js/dist/colorHelpers"
-import Color from "../utils/Color"
+import { RgbColor } from "launchpad.js"
+import { arrayEquals } from "../utils"
 
 let grid: Grid.Item[]
 
@@ -38,27 +35,4 @@ export namespace Grid {
         export const USER = () => getItem('7x0')
     }
 }
-
-const CreateGrid = (lp: ILaunchpad): Grid.Item[] => {
-    grid = allXy(9, 9).map(([x, y]) => {
-        let data: Grid.Item
-        data = {
-            xy: [x, y],
-            color: {
-                rgb: Color.RGB.off,
-                setColor: (color: RgbColor) => {
-                    data.color.rgb = color
-                    lp.setButtonColor(data.xy, colorFromRGB(color))
-                }
-            },
-            clear: () => data.color.setColor(Color.RGB.off)
-        }
-
-        return data
-    })
-
-    return grid
-
-}
-
-export default CreateGrid
+ 

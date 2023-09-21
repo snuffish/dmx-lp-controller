@@ -5,6 +5,8 @@ abstract class BaseComponent {
 
     constructor(position: GridMatrix) {
         this._position = position;
+        console.log(position)
+        
         // @TODO: Map the GridMatrix to a Button object
     }
 
