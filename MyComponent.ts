@@ -1,16 +1,16 @@
-import Emitter from "./src/emitter"
+// import Emitter from "./src/emitter"
 
-class MyComponent {
-    constructor() {
-        Emitter.on('MyComponent', () => {})
-        setTimeout(() => {
-            Emitter.emit('play', {})
-        }, 2000)
-    }
+// class MyComponent {
+//     constructor() {
+//         Emitter.on('MyComponent', () => {})
+//         setTimeout(() => {
+//             Emitter.emit('play', {})
+//         }, 2000)
+//     }
 
-    private sendEvent() {
+//     private sendEvent() {
 
-    }
-}
+//     }
+// }
 
-export default MyComponent
+// export default MyComponent

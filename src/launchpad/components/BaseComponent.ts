@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { ButtonIn } from 'launchpad.js'
-import Emitter, { Button } from '../../emitter';
+import { Button, lpEmitter } from '../../emitter';
 import { ButtonEvent } from './ButtonComponent';
 import { isEqual } from 'lodash';
 
@@ -9,8 +9,9 @@ abstract class BaseComponent {
 
     constructor(position: ButtonIn) {
         this._position = position;
-        
-        Emitter.on('buttonPressed', (button: Button, event: ButtonEvent) =>
+
+        lpEmitter.on('TESTAR LITE')
+        lpEmitter.on('buttonPressed', (button: Button, event: ButtonEvent) =>
             isEqual(this._position, button.xy) && this.onPressed())
     }
 
