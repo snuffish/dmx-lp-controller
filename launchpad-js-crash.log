@@ -1,0 +1,38 @@
+PID 69288 received SIGSEGV for address: 0x8e44491c
+SymInit: Symbol-SearchPath: '.;D:\Projects\dmx-lp-controller;C:\Program Files\nodejs;C:\Windows;C:\Windows\system32;SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols;', symOptions: 530, UserName: 'snuff'
+OS-Version: 10.0.21996 () 0x100-0x1
+d:\projects\dmx-lp-controller\node_modules\segfault-handler\src\stackwalker.cpp (941): StackWalker::ShowCallstack
+d:\projects\dmx-lp-controller\node_modules\segfault-handler\src\segfault-handler.cpp (242): segfault_handler
+00007FFC90EBBF4A (ntdll): (filename not available): RtlAreLongPathsEnabled
+00007FFC90E757C2 (ntdll): (filename not available): RtlRestoreContext
+00007FFC90E72C83 (ntdll): (filename not available): RtlRaiseException
+00007FFC8E44491C (KERNELBASE): (filename not available): RaiseException
+d:\agent\_work\2\s\src\vctools\crt\vcruntime\src\eh\throw.cpp (133): _CxxThrowException
+d:\projects\dmx-lp-controller\node_modules\midi\vendor\rtmidi\rtmidi.cpp (579): MidiApi::error
+d:\projects\dmx-lp-controller\node_modules\midi\vendor\rtmidi\rtmidi.cpp (2998): MidiOutWinMM::sendMessage
+d:\projects\dmx-lp-controller\node_modules\midi\src\output.cpp (174): NodeMidiOutput::Send
+d:\projects\dmx-lp-controller\node_modules\nan\nan_callbacks_12_inl.h (178): Nan::imp::FunctionCallbackWrapper
+00007FF6E4AEC6A6 (node): (filename not available): v8::internal::Builtins::code_handle
+00007FF6E4AEC299 (node): (filename not available): v8::internal::Builtins::code_handle
+00007FF6E4AEC55C (node): (filename not available): v8::internal::Builtins::code_handle
+00007FF6E4AEC3C0 (node): (filename not available): v8::internal::Builtins::code_handle
+00007FF6E4BBFAA1 (node): (filename not available): v8::internal::SetupIsolateDelegate::SetupHeap
+PID 111560 received SIGSEGV for address: 0x8e44491c
+SymInit: Symbol-SearchPath: '.;D:\Projects\dmx-lp-controller;C:\Program Files\nodejs;C:\Windows;C:\Windows\system32;SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols;', symOptions: 530, UserName: 'snuff'
+OS-Version: 10.0.21996 () 0x100-0x1
+d:\projects\dmx-lp-controller\node_modules\segfault-handler\src\stackwalker.cpp (941): StackWalker::ShowCallstack
+d:\projects\dmx-lp-controller\node_modules\segfault-handler\src\segfault-handler.cpp (242): segfault_handler
+00007FFC90EBBF4A (ntdll): (filename not available): RtlAreLongPathsEnabled
+00007FFC90E757C2 (ntdll): (filename not available): RtlRestoreContext
+00007FFC90E72C83 (ntdll): (filename not available): RtlRaiseException
+00007FFC8E44491C (KERNELBASE): (filename not available): RaiseException
+d:\agent\_work\2\s\src\vctools\crt\vcruntime\src\eh\throw.cpp (133): _CxxThrowException
+d:\projects\dmx-lp-controller\node_modules\midi\vendor\rtmidi\rtmidi.cpp (579): MidiApi::error
+d:\projects\dmx-lp-controller\node_modules\midi\vendor\rtmidi\rtmidi.cpp (2998): MidiOutWinMM::sendMessage
+d:\projects\dmx-lp-controller\node_modules\midi\src\output.cpp (174): NodeMidiOutput::Send
+d:\projects\dmx-lp-controller\node_modules\nan\nan_callbacks_12_inl.h (178): Nan::imp::FunctionCallbackWrapper
+00007FF6E4AEC6A6 (node): (filename not available): v8::internal::Builtins::code_handle
+00007FF6E4AEC299 (node): (filename not available): v8::internal::Builtins::code_handle
+00007FF6E4AEC55C (node): (filename not available): v8::internal::Builtins::code_handle
+00007FF6E4AEC3C0 (node): (filename not available): v8::internal::Builtins::code_handle
+00007FF6E4BBFAA1 (node): (filename not available): v8::internal::SetupIsolateDelegate::SetupHeap

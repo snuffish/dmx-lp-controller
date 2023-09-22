@@ -8,8 +8,15 @@ import Color from './utils/Color'
 const lp = Launchpad()
 lp.clear()
 
-const toggleColorButton = new ToggleColorButton([0,8]).setRandomColor()
-const staticColorButton = new StaticColorButton([1,8]).setRandomColor()
+new StaticColorButton([0,8]).setRandomColor()
+new ToggleColorButton([1,8]).setRandomColor()
+new ToggleColorButton([2,8]).setRandomColor()
+new ToggleColorButton([3,8]).setRandomColor()
+new StaticColorButton([4,8]).setRandomColor()
+new ToggleColorButton([5,8]).setRandomColor()
+new ToggleColorButton([6,8]).setRandomColor()
+new ToggleColorButton([7,8]).setRandomColor()
+
 
 const stopBtn = new ButtonComponent([8,8])
 stopBtn.color = Color.RGB.red

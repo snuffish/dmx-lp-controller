@@ -40,6 +40,7 @@ class ButtonComponent extends BaseComponent implements IButtonBehaviour {
 
     onRelease(): void {
         console.log(buttonLogOutput({...this.position, event: ButtonEvent.UP}))
+        
     }
 }
 

@@ -1,4 +1,4 @@
-import { DMX, EnttecUSBDMXProDriver } from 'dmx-ts'
+import { Animation, DMX, EnttecUSBDMXProDriver } from 'dmx-ts'
 import express from 'express'
 import type { AppDMXProps } from '../types'
 
@@ -11,6 +11,18 @@ const setupDMX = async (serialPort: string) => {
     console.log(`Attached DMX from Serial-Port => ${serialPort}`)
 
     const reset = () => universe.updateAll(0)
+
+    // new Animation()
+    // .add({
+    //     1: 255,
+    //     2: 255,
+    //     3: 255
+    // }, 500)
+    // .add({
+    //     1: 0,
+    //     2: 0,
+    //     3: 0
+    // }, 500).runLoop(universe, reset)
 
     return {
         driver, universe, reset
