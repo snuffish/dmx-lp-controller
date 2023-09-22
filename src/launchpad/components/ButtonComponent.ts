@@ -15,7 +15,11 @@ class ButtonComponent extends BaseComponent implements IButtonBehaviour {
         super(position)
 
         lpEmitter.on('buttonPressed', (button: Button, event: ButtonEvent) =>
-            isThisComponent(this, button) && (event == ButtonEvent.DOWN ? this.onPressed() : this.onRelease()))
+            isThisComponent(this, button) && (
+                event == ButtonEvent.DOWN ? 
+                    this.onPressed()
+                : this.onRelease())
+            )
     }
     
     public get color() { return this._color }

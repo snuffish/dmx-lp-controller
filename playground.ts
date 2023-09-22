@@ -1,9 +1,29 @@
+// @ts-nocheck
+import lib, { range, product, chunk } from 'iterlib'
+
+// const createMatrix = (width, height) => [...product(range(width),range(height))]
+// const data = createMatrix(8, 8)
+
+
+
+const posData = [0, 0, 0, 1, 1, 0, 0, 2, 1, 1, 2, 0, 0, 3, 1, 2, 2, 1, 3, 0]
+
+for (let [x, y] of posData::chunk(2)) {
+    console.log(x,y)
+}
+
+
+
+
+
+
+
 // import { Button, ButtonIn, ButtonStyle, ILaunchpad, LaunchpadMK3, RgbColor } from 'launchpad.js';
 // import { BaseLaunchpad } from 'launchpad.js/dist/launchpads/base/BaseLaunchpad';
 // import MyComponent from './MyComponent'
 // import Emitter from './src/Emitter'
 
-import { dmxEmitter, lpEmitter } from "./src/emitter";
+// import { dmxEmitter, lpEmitter } from "./src/emitter";
 
 // Emitter.on('play', () => {
 //     console.log("PLAYED CALLED!")
@@ -19,6 +39,8 @@ import { dmxEmitter, lpEmitter } from "./src/emitter";
 //     channelMode: 3,
 //     channelSetup
 // })
+
+
 
 
 
