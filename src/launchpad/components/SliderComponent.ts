@@ -7,7 +7,7 @@ import { RgbColor } from "launchpad.js";
 import { isEqual } from "lodash";
 
 class SliderComponent extends BaseComponent {
-    private defaultColor = [74, 72, 66] as RgbColor
+    private defaultColor: RgbColor= [74, 72, 66]
 
     constructor(row: number) {
         super([row, 8])
