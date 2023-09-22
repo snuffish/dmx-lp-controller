@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "dmx-ts": "^0.3.0",
+    "dmxnet": "^0.9.0",
     "eventemitter3": "^5.0.1",
     "express": "^4.18.2",
     "launchpad.js": "^3.3.0",

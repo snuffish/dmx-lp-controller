@@ -6,8 +6,8 @@ import ButtonComponent from "./ButtonComponent";
 import { RgbColor } from "launchpad.js";
 import { isEqual } from "lodash";
 
-class SliderComponent extends BaseComponent {
-    private defaultColor: RgbColor= [74, 72, 66]
+class SliderComponent extends ButtonComponent {
+    private defaultColor: RgbColor= [4,4,4]
 
     constructor(row: number) {
         super([row, 8])
@@ -22,11 +22,21 @@ class SliderComponent extends BaseComponent {
             buttons.add(btn)
         }
 
+        
+
         // setInterval(() => {
         //     buttons.forEach(btn => {
         //         btn.color = isEqual(Color.RGB.off, btn.color) ? this.defaultColor : Color.RGB.off                
         //     })
         // }, 100)
+    }
+
+    onPressed(): void {
+        console.log("SLIDER!!!")
+    }
+
+    onRelease(): void {
+        
     }
 }
 
