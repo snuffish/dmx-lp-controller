@@ -15,7 +15,7 @@ new SliderComponent(4)
 new SliderComponent(6)
 
 // new StaticColorButton([0,8]).setRandomColor()
-// new ToggleColorButton([1,8]).setRandomColor()
+new ToggleColorButton([1,8]).setRandomColor()
 // new ToggleColorButton([2,8]).setRandomColor()
 // new ToggleColorButton([3,8]).setRandomColor()
 // new StaticColorButton([4,8]).setRandomColor()

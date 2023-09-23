@@ -6,11 +6,11 @@ import lib, { range, product, chunk } from 'iterlib'
 
 
 
-const posData = [0, 0, 0, 1, 1, 0, 0, 2, 1, 1, 2, 0, 0, 3, 1, 2, 2, 1, 3, 0]
+// const posData = [0, 0, 0, 1, 1, 0, 0, 2, 1, 1, 2, 0, 0, 3, 1, 2, 2, 1, 3, 0]
 
-for (let [x, y] of posData::chunk(2)) {
-    console.log(x,y)
-}
+// for (let [x, y] of posData::chunk(2)) {
+//     console.log(x,y)
+// }
 
 
 

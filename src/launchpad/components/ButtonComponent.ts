@@ -1,6 +1,6 @@
 import { RgbColor } from 'launchpad.js'
 import { lpEmitter } from '../../emitter'
-import { DMX, isThisComponent } from '../../utils'
+import { DMX, arrayToMap, isThisComponent } from '../../utils'
 import Color from '../../utils/Color'
 import { GridMatrix } from '../Grid'
 import { buttonLogOutput } from '../Logger'
@@ -36,8 +36,7 @@ class ButtonComponent extends BaseComponent implements IButtonBehaviour {
     onPressed(): void {
         console.log(buttonLogOutput({...this.position, event: ButtonEvent.DOWN}))
         
-        let i = 0
-        const dmx = this.color.reduce((acc, val): any => ({ ...acc, [++i]: val}), {})
+        const dmx = arrayToMap(this.color)
 
         DMX.update(dmx)
     }

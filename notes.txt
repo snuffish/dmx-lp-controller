@@ -1,0 +1,3 @@
+Logo top-right: [8,0]
+Top panel: [0,0] - [7,0]
+Right panel: [8,1] - [8,8]
