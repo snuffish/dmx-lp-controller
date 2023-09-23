@@ -17,7 +17,7 @@ class SliderComponent extends ButtonComponent {
         for (let y = 8; y > 0; y--) {
             const btn = new ButtonComponent([row, y])
             btn.color = this.defaultColor
-            btn.onPressed = () =>  btn.color = Color.RGB.off 
+            // btn.onPressed = () =>  btn.color = Color.RGB.off 
 
             buttons.add(btn)
         }

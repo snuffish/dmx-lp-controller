@@ -1,4 +1,5 @@
 import Launchpad from './launchpad'
+import BaseComponent from './launchpad/components/BaseComponent'
 import ButtonComponent from './launchpad/components/ButtonComponent'
 import SliderComponent from './launchpad/components/SliderComponent'
 import StaticColorButton from './launchpad/components/StaticColorButton'
@@ -9,7 +10,8 @@ import Color from './utils/Color'
 const lp = Launchpad()
 lp.clear()
 
-new SliderComponent(0)
+const slider = new SliderComponent(0)
+console.log(slider instanceof BaseComponent)
 new SliderComponent(2)
 new SliderComponent(4)
 new SliderComponent(6)
