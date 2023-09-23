@@ -15,7 +15,8 @@ const lpEmitter = createEmitter<{
 }>()
 
 const dmxEmitter = createEmitter<{
-    sendDMX: (data: UniverseData) => void
+    update: (data: UniverseData) => void
+    clear: () => void
 }>()
 
 export {
